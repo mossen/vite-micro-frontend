@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "./Button.css";
 
-export default ({ caption = "Shared Button 02" , cb}) => {
+interface ButtonProps {
+  caption: String;
+  cb: (count: Number) => void;
+}
+
+const Button = ({ caption = "Shared Button 01", cb }: ButtonProps) => {
   const [count, setCount] = useState(0);
   console.log("🚀 ~ count:", count);
 
@@ -16,3 +21,6 @@ export default ({ caption = "Shared Button 02" , cb}) => {
     </button>
   );
 };
+
+export default Button;
+export type { ButtonProps };
