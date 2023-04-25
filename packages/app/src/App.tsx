@@ -14,7 +14,7 @@ function App() {
     if (!isReady) {
       (
         window as any
-      ).remoteUrl = `http://localhost:5000/${selectedVersion}/assets/shared.js`;
+      ).remoteUrl = `http://localhost:5000/assets/shared.js`;
       setIsReady(true);
     }
   }, []);

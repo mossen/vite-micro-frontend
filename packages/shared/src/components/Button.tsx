@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./Button.css";
+// @ts-ignore
+import Button from "shared2/Button";
 
 interface ButtonProps {
   caption: String;
   cb: (count: Number) => void;
 }
 
-const Button = ({ caption = "Shared Button 01", cb }: ButtonProps) => {
+const Button1 = ({ caption = "Shared Button 01", cb }: ButtonProps) => {
   const [count, setCount] = useState(0);
-  console.log("🚀 ~ count:", count);
+  console.log("🚀 ~ Shared count:", count);
 
   const handleClick = () => {
     setCount(count + 1);
@@ -16,11 +18,15 @@ const Button = ({ caption = "Shared Button 01", cb }: ButtonProps) => {
   };
 
   return (
-    <button className="shared-btn" onClick={handleClick}>
-      {caption} {count}
-    </button>
+    <>
+      <button className="shared-btn" onClick={handleClick}>
+        {caption} {count}
+      </button>
+
+      <Button />
+    </>
   );
 };
 
-export default Button;
+export default Button1;
 export type { ButtonProps };

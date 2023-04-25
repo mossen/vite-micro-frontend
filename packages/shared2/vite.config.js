@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import federation from "@originjs/vite-plugin-federation";
-import dts from 'vite-plugin-dts';
 import dns from "dns";
 
 dns.setDefaultResultOrder("verbatim");
@@ -11,37 +10,23 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: "shared",
-      filename: "shared.js",
+      name: "shared2",
+      filename: "shared2.js",
       exposes: {
         "./Button": { name: "Button", import: "./src/components/Button" },
-      },
-      remotes: {
-        shared2: {
-          external: "http://localhost:5002/assets/shared2.js",
-        },
       },
       shared: { react: "^18.2.0" },
     }),
   ],
   preview: {
     host: "localhost",
-    port: 5000,
+    port: 5002,
     strictPort: true,
     headers: {
       "Access-Control-Allow-Origin": "*",
     },
   },
   build: {
-    /*   lib: {
-      entry: "./src/components",
-      name: "Button",
-      fileName: (format) => `Button.${format}.js`,
-      formats: ["es"],
-      exports: {
-        exclude: ["node_modules"],
-      },
-    }, */
     target: "esnext",
     minify: false,
     cssCodeSplit: false,
